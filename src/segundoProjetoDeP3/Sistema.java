@@ -234,6 +234,25 @@ public class Sistema {
 		}
 	}
 	
+	public static void addPublicacao(List<Projeto> projetos){
+		String projeto;
+		System.out.println("Digite o nome do Projeto");
+		projeto=scan.nextLine();
+		
+		for(Projeto x : projetos){
+			if(x.titulo.equals(projeto)){
+				Publicacao novapublicacao = new Publicacao ();
+				System.out.println("Digite o Autor");
+				novapublicacao.autor=scan.nextLine();
+				System.out.println("Digite o Titulo");
+				novapublicacao.titulo=scan.nextLine();
+				System.out.println("Digite a Publicação");
+				novapublicacao.publicacao=scan.nextLine();
+				x.Publicacoes.add(novapublicacao);
+			}
+		}
+	}
+	
 	public static void listarProjetos(List<Projeto> projetos) {
 		for (Projeto x : projetos) {
 			System.out.printf("%s\n", x.titulo);
@@ -265,6 +284,7 @@ public class Sistema {
 			System.out.println("1- Adicionar novo projeto");
 			System.out.println("2- Adicionar Pessoa");
 			System.out.println("3- Alocar Colaborador");
+			System.out.println("4- Adicionar Publicação");
 			System.out.println("10- Listar Projetos");
 			op = scan.nextInt();
 
@@ -274,6 +294,8 @@ public class Sistema {
 				addPessoa(Professores, alunosG, alunosM, alunosD, pesquisadores);
 			else if (op == 3)
 				alocarColaborador(projetos, Professores, alunosG, alunosM, alunosD, pesquisadores);
+			else if (op == 10)
+				addPublicacao(projetos);
 			else if (op == 10)
 				listarProjetos(projetos);
 		} while (op != 0);
