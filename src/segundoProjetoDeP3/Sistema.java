@@ -99,38 +99,43 @@ public class Sistema {
 	public static void alocarColaborador(List<Projeto> projetos, List<Professor> professores,
 			List<AlunoGraduacao> alunosG, List<AlunoMestrado> alunosM, List<AlunoDoutorado> alunosD,
 			List<Pesquisador> pesquisadores) {
-		
+
 		int op;
 		String nome, projeto;
-		
-		System.out.println("Digite o Nome do Projeto");
+
+		System.out.println("Digite o Titulo do Projeto");
 		scan.nextLine();
 		projeto = scan.nextLine();
-		
-		for(Projeto z : projetos){
-			if(z.titulo.equals(projeto)){
-				if(z.status==1){
+
+		for (Projeto z : projetos) {
+			if (z.titulo.equals(projeto)) {
+				if (z.status == 1) {
 					System.out.println(
 							"Selecione uma Opção\n1-Aluno Graduanção\n2-Aluno Mestrado\n3-Aluno de Doutorado\n4-Professor\n5-Pesquisador ");
 					op = scan.nextInt();
-					
+
 					if (op == 1) {
 						System.out.println("Digite o Nome do Aluno");
 						scan.nextLine();
 						nome = scan.nextLine();
-						
 
 						for (AlunoGraduacao x : alunosG) {
 							if (x.nome.equals(nome)) {
-								for (Projeto y : projetos) {
-									if (y.titulo.equals(projeto)) {
-										y.participantes.add(x);
-										break;
+								if (x.countProjetos < 2) {
+									for (Projeto y : projetos) {
+										if (y.titulo.equals(projeto)) {
+											y.participantes.add(x);
+											x.countProjetos++;
+											break;
+										}
 									}
+								}else{
+									System.out.println("Aluno com excesso de Projetos");
+									break;
 								}
-							}
-							if (x.nome.equals(nome)) {
-								break;
+								if (x.nome.equals(nome)) {
+									break;
+								}
 							}
 						}
 
@@ -174,7 +179,7 @@ public class Sistema {
 						System.out.println("Digite o Nome do Professor");
 						scan.nextLine();
 						nome = scan.nextLine();
-						
+
 						for (Professor x : professores) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
@@ -192,7 +197,7 @@ public class Sistema {
 						System.out.println("Digite o Nome do Pesquisador");
 						scan.nextLine();
 						nome = scan.nextLine();
-						
+
 						for (Pesquisador x : pesquisadores) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
@@ -208,15 +213,27 @@ public class Sistema {
 						}
 					}
 				}
-			}else{
+			} else {
 				System.out.println("O projeto não se encontra em andamento");
 				break;
 			}
 		}
-		
 
 	}
 
+	public static void alterarStatus(List<Projeto> projetos){
+		String projeto;
+		System.out.println("Digite o nome do projeto");
+		projeto=scan.nextLine();
+		
+		for(Projeto x : projetos){
+			if(x.titulo.equals(projeto)){
+				System.out.println("Escolha o novo status\n1- em elaboração\n2- em andamento\n3- concluido");
+				x.status=scan.nextInt();
+			}
+		}
+	}
+	
 	public static void listarProjetos(List<Projeto> projetos) {
 		for (Projeto x : projetos) {
 			System.out.printf("%s\n", x.titulo);
@@ -232,7 +249,7 @@ public class Sistema {
 			System.out.printf("%s\n", x.objetivo);
 			System.out.printf("%s\n", x.descricao);
 			System.out.printf("%s\n", x.professor);
-			for(Pessoa y : x.participantes){
+			for (Pessoa y : x.participantes) {
 				System.out.printf("\nNome: %s", y.nome);
 			}
 		}
