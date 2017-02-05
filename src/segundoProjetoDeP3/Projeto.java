@@ -11,5 +11,5 @@ public class Projeto {
 	public String objetivo; 
 	public String descricao; 
 	public String professor; 
-	public List<String> participantes = new ArrayList<String>();
+	public List<Pessoa> participantes = new ArrayList<Pessoa>();
 }
