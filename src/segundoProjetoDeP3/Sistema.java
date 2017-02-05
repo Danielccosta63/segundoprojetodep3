@@ -294,7 +294,7 @@ public class Sistema {
 				addPessoa(Professores, alunosG, alunosM, alunosD, pesquisadores);
 			else if (op == 3)
 				alocarColaborador(projetos, Professores, alunosG, alunosM, alunosD, pesquisadores);
-			else if (op == 10)
+			else if (op == 4)
 				addPublicacao(projetos);
 			else if (op == 10)
 				listarProjetos(projetos);
