@@ -12,6 +12,6 @@ public class Projeto {
 	public String descricao; 
 	public String professor; 
 	public List<Pessoa> participantes = new ArrayList<Pessoa>();
-	public List<Orientacao> orientacoes = new ArrayList<Orientacao>();
+	public List<Orientacao> Orientacoes = new ArrayList<Orientacao>();
 	public List<Publicacao> Publicacoes = new ArrayList<Publicacao>();
 }
