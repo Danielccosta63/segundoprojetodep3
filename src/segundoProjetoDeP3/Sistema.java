@@ -11,7 +11,7 @@ public class Sistema {
 	static List<AlunoDoutorado> alunosD = new ArrayList<AlunoDoutorado>();
 	static List<Pesquisador> pesquisadores = new ArrayList<Pesquisador>();
 
-	public void ordenado() {
+	public static void Ordenado() {
 		for (Professor x : Professores) {
 			x.projetoA.sort((p1, p2) -> Integer.compare(p2.dataDeInicio[2], p1.dataDeInicio[2]));
 			x.publicacoesA.sort((s1, s2) -> Integer.compare(s1.data[2], s2.data[2]));
@@ -388,6 +388,9 @@ public class Sistema {
 	public static void consultarColaborador(List<Professor> professores, List<AlunoGraduacao> alunosG,
 			List<AlunoMestrado> alunosM, List<AlunoDoutorado> alunosD, List<Pesquisador> pesquisadores) {
 		int op;
+		
+		Ordenado();
+		
 		String nome;
 		System.out.println(" -------------------------- ");
 		System.out.println(
@@ -499,10 +502,10 @@ public class Sistema {
 		int count1 = 0, count2 = 0, count3 = 0;
 		System.out.println("\n ------------------- ");
 		System.out.printf(
-				"|    Colaboradores  |\n|Professores:      %d|\n|Alunos Graduação: %d|\n|Alunos Mestrado:  %d|\n|Alunos Doutorado: %d|\n|Pesquisadores:    %d|\n|Total-------------%d|\n",
+				"|    COLABORADORES  |\n|Professores:      %d|\n|Alunos Graduação: %d|\n|Alunos Mestrado:  %d|\n|Alunos Doutorado: %d|\n|Pesquisadores:    %d|\n|Total-------------%d|\n",
 				professores.size(), alunosG.size(), alunosM.size(), alunosD.size(), pesquisadores.size(),
 				professores.size() + alunosG.size() + alunosM.size() + alunosD.size() + pesquisadores.size());
-		System.out.println("|      Projetos:    |");
+		System.out.println("|      PROJETOS:    |");
 		for (Projeto x : projetos) {
 			if (x.status == 1) {
 				count1++;
@@ -520,7 +523,7 @@ public class Sistema {
 			count1 += y.Orientacoes.size();
 			count2 += y.Publicacoes.size();
 		}
-		System.out.printf("\n|Orientações:      %d|\n|Publicações:      %d|\n", count1, count2);
+		System.out.printf("\n|ORIENTAÇÕES:      %d|\n|PUBLICAÇÕES:      %d|\n", count1, count2);
 		System.out.println(" ------------------- ");
 		System.out.println("\n\n");
 		
@@ -528,28 +531,35 @@ public class Sistema {
 
 	public static void listarProjetos(List<Projeto> projetos) {
 		for (Projeto x : projetos) {
-			System.out.printf("%s\n", x.titulo);
-			System.out.printf("%d\n", x.status);
-			System.out.printf("%d/", x.dataDeInicio[0]);
+			System.out.printf("=============Titulo============%s\n", x.titulo);
+			if(x.status==2)
+				System.out.printf("Status: Em andamento");
+			else
+				System.out.printf("Status: Concluido");
+			System.out.printf("Data de inicio: %d/", x.dataDeInicio[0]);
 			System.out.printf("%d/", x.dataDeInicio[1]);
 			System.out.printf("%d\n", x.dataDeInicio[2]);
-			System.out.printf("%d/", x.dataDeTermino[0]);
+			System.out.printf("Data de Término: %d/", x.dataDeTermino[0]);
 			System.out.printf("%d/", x.dataDeTermino[1]);
 			System.out.printf("%d\n", x.dataDeTermino[2]);
-			System.out.printf("%s\n", x.agenciaFinanciadora);
-			System.out.printf("%f\n", x.valorFinanciado);
-			System.out.printf("%s\n", x.objetivo);
-			System.out.printf("%s\n", x.descricao);
-			System.out.printf("%s\n", x.professor);
+			System.out.printf("Agencia financiadora%s\n", x.agenciaFinanciadora);
+			System.out.printf("Valor fananciado: %f\n", x.valorFinanciado);
+			System.out.printf("Objetivo: %s\n", x.objetivo);
+			System.out.printf("Descrição: %s\n", x.descricao);
+			System.out.printf("Professor Responsavel:%s\n", x.professor);
+			System.out.println("Colaboradores:");
 			for (Pessoa y : x.participantes) {
-				System.out.printf("\nNome: %s", y.nome);
+				System.out.printf("Nome: %s\n", y.nome);
 			}
+			System.out.println("\nPublicações:");
 			for(Publicacao y: x.Publicacoes){
 				System.out.printf("\nNome da publicação: %s", y.titulo);
 			}
+			System.out.println("\nOrientações:");
 			for(Orientacao y: x.Orientacoes){
 				System.out.printf("\nNome da Orientação: %s", y.titulo);
 			}
+			System.out.println("==================================");
 		}
 	}
 
@@ -570,6 +580,7 @@ public class Sistema {
 			System.out.println("|6- Consultar Colaborador  |");
 			System.out.println("|7- Listar Projetos        |");
 			System.out.println("|8- Relatorio              |");
+			System.out.println("|0- SAIR                   |");
 			System.out.println(" -------------------------- ");
 
 			op = scan.nextInt();
