@@ -1,7 +1,5 @@
 package segundoProjetoDeP3;
 
-public class Orientacao {
-	public String autor;
-	public String titulo;
+public class Orientacao extends Publicacao{
 	public String orientacao;
 }
