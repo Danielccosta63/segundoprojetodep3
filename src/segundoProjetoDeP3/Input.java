@@ -7,6 +7,8 @@ public class Input {
     private static Scanner scanner;
 
     public Input(){}
+    
+    
 
     public static int lerInteiro() {
         boolean ready = false;

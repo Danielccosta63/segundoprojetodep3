@@ -40,7 +40,7 @@ public class Sistema {
 		Projeto novoprojeto = new Projeto();
 		Professor novoprofessor = new Professor();
 		System.out.println("Digite o Nome do Projeto");
-		novoprojeto.titulo = Input.lerString();
+		novoprojeto.titulo = scan.nextLine();
 		System.out.println("Dia:");
 		novoprojeto.dataDeInicio[0] = Input.lerInteiro();
 		System.out.println("Mês:");
@@ -48,18 +48,18 @@ public class Sistema {
 		System.out.println("Ano:");
 		novoprojeto.dataDeInicio[2] = Input.lerInteiro();
 		System.out.print("Agência Financiadora ");
-		novoprojeto.agenciaFinanciadora = Input.lerString();
+		novoprojeto.agenciaFinanciadora = scan.nextLine();
 		System.out.print("\nValor Financiado: ");
 		novoprojeto.valorFinanciado = Input.lerDouble();
 		System.out.print("\nObjetivo: ");
-		novoprojeto.objetivo = Input.lerString();
+		novoprojeto.objetivo = scan.nextLine();
 		System.out.print("\nDescrição ");
-		novoprojeto.descricao = Input.lerString();
+		novoprojeto.descricao = scan.nextLine();
 		System.out.print("\nProfessor Responsável: ");
-		novoprojeto.professor = Input.lerString();
+		novoprojeto.professor = scan.nextLine();
 		novoprofessor.nome = novoprojeto.professor;
 		System.out.println("E-mail do Professor");
-		novoprofessor.email = Input.lerString();
+		novoprofessor.email = scan.nextLine();
 
 		professores.add(novoprofessor);
 		projetos.add(novoprojeto);
@@ -69,7 +69,7 @@ public class Sistema {
 		System.out.println(" -----------------------");
 		System.out.println("");
 		System.out.println("");
-		
+
 	}
 
 	public static void addPessoa(List<Professor> professores, List<AlunoGraduacao> alunosG, List<AlunoMestrado> alunosM,
@@ -77,43 +77,43 @@ public class Sistema {
 		int op;
 
 		System.out.println(
-				"Selecione uma Opção\n1-Aluno Graduanção\n2-Aluno Mestrado\n3-Aluno de Doutorado\n4-Professor\n5-Pesquisador ");
+				"Selecione uma Opção\n1-Aluno Graduação\n2-Aluno Mestrado\n3-Aluno de Doutorado\n4-Professor\n5-Pesquisador ");
 		op = Input.lerInteiro();
 
 		if (op == 1) {
 			AlunoGraduacao aluno = new AlunoGraduacao();
 			System.out.println("Digite o Nome do Aluno");
-			aluno.nome = Input.lerString();
+			aluno.nome = scan.nextLine();
 			System.out.println("Digite o E-Mail");
-			aluno.email = Input.lerString();
+			aluno.email = scan.nextLine();
 			alunosG.add(aluno);
 		} else if (op == 2) {
 			AlunoMestrado aluno = new AlunoMestrado();
 			System.out.println("Digite o Nome do Aluno");
-			aluno.nome = Input.lerString();
+			aluno.nome = scan.nextLine();
 			System.out.println("Digite o E-Mail");
-			aluno.email = Input.lerString();
+			aluno.email = scan.nextLine();
 			alunosM.add(aluno);
 		} else if (op == 3) {
 			AlunoDoutorado aluno = new AlunoDoutorado();
 			System.out.println("Digite o Nome do Aluno");
-			aluno.nome = Input.lerString();
+			aluno.nome = scan.nextLine();
 			System.out.println("Digite o E-Mail");
-			aluno.email = Input.lerString();
+			aluno.email = scan.nextLine();
 			alunosD.add(aluno);
 		} else if (op == 4) {
 			Professor professor = new Professor();
 			System.out.println("Digite o Nome do Professor");
-			professor.nome = Input.lerString();
+			professor.nome = scan.nextLine();
 			System.out.println("Digite o E-Mail");
-			professor.email = Input.lerString();
+			professor.email = scan.nextLine();
 			professores.add(professor);
 		} else if (op == 5) {
 			Pesquisador pesquisador = new Pesquisador();
 			System.out.println("Digite o Nome do Pesquisador");
-			pesquisador.nome = Input.lerString();
+			pesquisador.nome = scan.nextLine();
 			System.out.println("Digite o E-Mail");
-			pesquisador.email = Input.lerString();
+			pesquisador.email = scan.nextLine();
 			pesquisadores.add(pesquisador);
 		}
 		System.out.println("");
@@ -133,8 +133,8 @@ public class Sistema {
 		String nome, projeto;
 
 		System.out.println("Digite o Titulo do Projeto");
-		scan.nextLine();
-		projeto = Input.lerString();
+		
+		projeto = scan.nextLine();
 
 		for (Projeto z : projetos) {
 			if (z.titulo.equals(projeto)) {
@@ -145,7 +145,7 @@ public class Sistema {
 
 					if (op == 1) {
 						System.out.println("Digite o Nome do Aluno");
-						nome = Input.lerString();
+						nome = scan.nextLine();
 
 						for (AlunoGraduacao x : alunosG) {
 							if (x.nome.equals(nome)) {
@@ -154,6 +154,7 @@ public class Sistema {
 										if (y.titulo.equals(projeto)) {
 											y.participantes.add(x);
 											x.countProjetos++;
+											x.projetosA.add(y);
 											break;
 										}
 									}
@@ -169,13 +170,14 @@ public class Sistema {
 
 					} else if (op == 2) {
 						System.out.println("Digite o Nome do Aluno");
-						nome = Input.lerString();
+						nome = scan.nextLine();
 
 						for (AlunoMestrado x : alunosM) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
 									if (y.titulo.equals(projeto)) {
 										y.participantes.add(x);
+										x.projetosA.add(y);
 										break;
 									}
 								}
@@ -186,13 +188,14 @@ public class Sistema {
 						}
 					} else if (op == 3) {
 						System.out.println("Digite o Nome do Aluno");
-						nome = Input.lerString();
+						nome = scan.nextLine();
 
 						for (AlunoDoutorado x : alunosD) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
 									if (y.titulo.equals(projeto)) {
 										y.participantes.add(x);
+										x.projetosA.add(y);
 										break;
 									}
 								}
@@ -203,13 +206,14 @@ public class Sistema {
 						}
 					} else if (op == 4) {
 						System.out.println("Digite o Nome do Professor");
-						nome = Input.lerString();
+						nome = scan.nextLine();
 
 						for (Professor x : professores) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
 									if (y.titulo.equals(projeto)) {
 										y.participantes.add(x);
+										x.projetosA.add(y);
 										break;
 									}
 								}
@@ -220,13 +224,14 @@ public class Sistema {
 						}
 					} else if (op == 5) {
 						System.out.println("Digite o Nome do Pesquisador");
-						nome = Input.lerString();
+						nome = scan.nextLine();
 
 						for (Pesquisador x : pesquisadores) {
 							if (x.nome.equals(nome)) {
 								for (Projeto y : projetos) {
 									if (y.titulo.equals(projeto)) {
 										y.participantes.add(x);
+										x.projetosA.add(y);
 										break;
 									}
 								}
@@ -252,13 +257,25 @@ public class Sistema {
 
 	public static void alterarStatus(List<Projeto> projetos) {
 		String projeto;
+		int op;
 		System.out.println("Digite o nome do projeto");
-		projeto = Input.lerString();
+		projeto = scan.nextLine();
 
 		for (Projeto x : projetos) {
 			if (x.titulo.equals(projeto)) {
 				System.out.println("Escolha o novo status\n1- em elaboração\n2- em andamento\n3- concluido");
-				x.status = Input.lerInteiro();
+				op = Input.lerInteiro();
+				x.status = op;
+
+				if (op == 3) {
+					System.out.println("Digite a data de conclusão:");
+					System.out.println("Dia:");
+					x.dataDeTermino[0] = Input.lerInteiro();
+					System.out.println("Mês:");
+					x.dataDeTermino[1] = Input.lerInteiro();
+					System.out.println("Dia:");
+					x.dataDeTermino[2] = Input.lerInteiro();
+				}
 			}
 		}
 	}
@@ -270,35 +287,32 @@ public class Sistema {
 
 		System.out.println(
 				"Selecione uma Opção\n1-Aluno Graduanção\n2-Aluno Mestrado\n3-Aluno de Doutorado\n4-Professor\n5-Pesquisador ");
-		scan.nextLine();
+		
 		op = Input.lerInteiro();
 
 		System.out.println("Digite o nome do Projeto");
-		projeto = Input.lerString();
+		projeto =scan.nextLine();
 		System.out.println("Digite o Dia");
-		novapublicacao.data[0]= Input.lerInteiro();
+		novapublicacao.data[0] = Input.lerInteiro();
 		System.out.println("Digite o Mês");
-		novapublicacao.data[1]= Input.lerInteiro();
+		novapublicacao.data[1] = Input.lerInteiro();
 		System.out.println("Digite o Ano");
-		novapublicacao.data[2]= Input.lerInteiro();
+		novapublicacao.data[2] = Input.lerInteiro();
 		System.out.println("Digite o Autor");
-		nome = Input.lerString();		
+		nome = scan.nextLine();
 		novapublicacao.projeto = projeto;
 		novapublicacao.autor = nome;
 		System.out.println("Digite o Titulo");
-		novapublicacao.titulo = Input.lerString();
+		novapublicacao.titulo = scan.nextLine();
 		System.out.println("Digite a Publicação");
-		novapublicacao.publicacao = Input.lerString();
-		
-		
-		
+		novapublicacao.publicacao = scan.nextLine();
+
 		for (Projeto x : projetos) {
 			if (x.titulo.equals(projeto)) {
 				x.Publicacoes.add(novapublicacao);
 			}
 		}
-		
-		
+
 		if (op == 1) {
 			for (AlunoGraduacao al : alunosG) {
 				if (al.nome.equals(nome)) {
@@ -347,32 +361,32 @@ public class Sistema {
 	public static void addOrientacao(List<Projeto> projetos, List<Professor> professores) {
 		String projeto, nome;
 		System.out.println("Digite o nome do Projeto");
-		projeto = Input.lerString();
+		projeto = scan.nextLine();
 		System.out.println("Digite o Autor");
-		nome = Input.lerString();
-		
+		nome = scan.nextLine();
+
 		Orientacao novaOrientacao = new Orientacao();
 		System.out.println("Digite o Dia");
-		novaOrientacao.data[0]= Input.lerInteiro();
+		novaOrientacao.data[0] = Input.lerInteiro();
 		System.out.println("Digite o Mês");
-		novaOrientacao.data[1]= Input.lerInteiro();
+		novaOrientacao.data[1] = Input.lerInteiro();
 		System.out.println("Digite o Ano");
-		novaOrientacao.data[2]= Input.lerInteiro();
-		novaOrientacao.autor = scan.nextLine();
+		novaOrientacao.data[2] = Input.lerInteiro();
+		novaOrientacao.autor = nome;
 		System.out.println("Digite o Titulo");
-		novaOrientacao.titulo = Input.lerString();
+		novaOrientacao.titulo = scan.nextLine();
 		System.out.println("Digite a Publicação");
-		novaOrientacao.orientacao = Input.lerString();
-		
+		novaOrientacao.orientacao = scan.nextLine();
+
 		for (Projeto x : projetos) {
-			if (x.titulo.equals(projeto)) {				
+			if (x.titulo.equals(projeto)) {
 				System.out.println("------------------criou p");
 				x.Orientacoes.add(novaOrientacao);
 			}
 		}
-				
+
 		for (Professor x : professores) {
-			if (x.nome.equals(nome)) {	
+			if (x.nome.equals(nome)) {
 				System.out.println("--------------------crioupx");
 				x.Orientacoes.add(novaOrientacao);
 			}
@@ -388,9 +402,9 @@ public class Sistema {
 	public static void consultarColaborador(List<Professor> professores, List<AlunoGraduacao> alunosG,
 			List<AlunoMestrado> alunosM, List<AlunoDoutorado> alunosD, List<Pesquisador> pesquisadores) {
 		int op;
-		
+
 		Ordenado();
-		
+
 		String nome;
 		System.out.println(" -------------------------- ");
 		System.out.println(
@@ -400,11 +414,11 @@ public class Sistema {
 
 		if (op == 1) {
 			System.out.printf("Digite o nome do aluno: ");
-			nome = Input.lerString();
+			nome = scan.nextLine();
 			for (AlunoGraduacao x : alunosG) {
 				if (x.nome.equals(nome)) {
 					System.out.printf("Nome: %s\n E-mail: %s\nProjetos: \n", x.nome, x.email);
-					for (Projeto y : x.projetoA) {
+					for (Projeto y : x.projetosA) {
 						System.out.printf("%s\n", y.titulo);
 					}
 					System.out.println(" ");
@@ -422,7 +436,7 @@ public class Sistema {
 			for (AlunoMestrado x : alunosM) {
 				if (x.nome.equals(nome)) {
 					System.out.printf("Nome: %s\n E-mail: %s\nProjetos: \n", x.nome, x.email);
-					for (Projeto y : x.projetoA) {
+					for (Projeto y : x.projetosA) {
 						System.out.printf("%s\n", y.titulo);
 					}
 					System.out.println(" ");
@@ -441,7 +455,7 @@ public class Sistema {
 			for (AlunoDoutorado x : alunosD) {
 				if (x.nome.equals(nome)) {
 					System.out.printf("Nome: %s\n E-mail: %s\nProjetos: \n", x.nome, x.email);
-					for (Projeto y : x.projetoA) {
+					for (Projeto y : x.projetosA) {
 						System.out.printf("%s\n", y.titulo);
 					}
 					System.out.println(" ");
@@ -454,12 +468,12 @@ public class Sistema {
 
 		} else if (op == 4) {
 			System.out.printf("Digite o nome do Professor: ");
-			scan.nextLine();
+		
 			nome = scan.nextLine();
 			for (Professor x : professores) {
 				if (x.nome.equals(nome)) {
 					System.out.printf("Nome: %s\n E-mail: %s\nProjetos: \n", x.nome, x.email);
-					for (Projeto y : x.projetoA) {
+					for (Projeto y : x.projetosA) {
 						System.out.printf("%s\n", y.titulo);
 					}
 					System.out.println(" ");
@@ -482,7 +496,7 @@ public class Sistema {
 			for (Pesquisador x : pesquisadores) {
 				if (x.nome.equals(nome)) {
 					System.out.printf("Nome: %s\n E-mail: %s\nProjetos: \n", x.nome, x.email);
-					for (Projeto y : x.projetoA) {
+					for (Projeto y : x.projetosA) {
 						System.out.printf("%s\n", y.titulo);
 					}
 					System.out.println(" ");
@@ -515,8 +529,9 @@ public class Sistema {
 				count3++;
 			}
 		}
-		System.out.printf("|Elaboração:       %d|\n|Andamento:        %d|\n|Concluidos:       %d|\n|Total-------------%d|", count1, count2, count3,
-				count1 + count2 + count3);
+		System.out.printf(
+				"|Elaboração:       %d|\n|Andamento:        %d|\n|Concluidos:       %d|\n|Total-------------%d|",
+				count1, count2, count3, count1 + count2 + count3);
 		count1 = 0;
 		count2 = 0;
 		for (Projeto y : projetos) {
@@ -526,16 +541,16 @@ public class Sistema {
 		System.out.printf("\n|ORIENTAÇÕES:      %d|\n|PUBLICAÇÕES:      %d|\n", count1, count2);
 		System.out.println(" ------------------- ");
 		System.out.println("\n\n");
-		
+
 	}
 
 	public static void listarProjetos(List<Projeto> projetos) {
 		for (Projeto x : projetos) {
-			System.out.printf("=============Titulo============%s\n", x.titulo);
-			if(x.status==2)
+			System.out.printf("=============Titulo:%s============\n", x.titulo);
+			if (x.status == 2)
 				System.out.printf("Status: Em andamento");
 			else
-				System.out.printf("Status: Concluido");
+				System.out.printf("Status: Concluido\n");
 			System.out.printf("Data de inicio: %d/", x.dataDeInicio[0]);
 			System.out.printf("%d/", x.dataDeInicio[1]);
 			System.out.printf("%d\n", x.dataDeInicio[2]);
@@ -543,7 +558,7 @@ public class Sistema {
 			System.out.printf("%d/", x.dataDeTermino[1]);
 			System.out.printf("%d\n", x.dataDeTermino[2]);
 			System.out.printf("Agencia financiadora%s\n", x.agenciaFinanciadora);
-			System.out.printf("Valor fananciado: %f\n", x.valorFinanciado);
+			System.out.printf("Valor fananciado: %.2f\n", x.valorFinanciado);
 			System.out.printf("Objetivo: %s\n", x.objetivo);
 			System.out.printf("Descrição: %s\n", x.descricao);
 			System.out.printf("Professor Responsavel:%s\n", x.professor);
@@ -552,11 +567,11 @@ public class Sistema {
 				System.out.printf("Nome: %s\n", y.nome);
 			}
 			System.out.println("\nPublicações:");
-			for(Publicacao y: x.Publicacoes){
+			for (Publicacao y : x.Publicacoes) {
 				System.out.printf("\nNome da publicação: %s", y.titulo);
 			}
 			System.out.println("\nOrientações:");
-			for(Orientacao y: x.Orientacoes){
+			for (Orientacao y : x.Orientacoes) {
 				System.out.printf("\nNome da Orientação: %s", y.titulo);
 			}
 			System.out.println("==================================");
@@ -579,11 +594,12 @@ public class Sistema {
 			System.out.println("|5- Adicionar Orientação   |");
 			System.out.println("|6- Consultar Colaborador  |");
 			System.out.println("|7- Listar Projetos        |");
-			System.out.println("|8- Relatorio              |");
+			System.out.println("|8- Alterar Status         |");
+			System.out.println("|9- Relatorio              |");
 			System.out.println("|0- SAIR                   |");
 			System.out.println(" -------------------------- ");
 
-			op = scan.nextInt();
+			op = Input.lerInteiro();
 
 			if (op == 1)
 				addProjeto(projetos, Professores);
@@ -600,6 +616,8 @@ public class Sistema {
 			else if (op == 7)
 				listarProjetos(projetos);
 			else if (op == 8)
+				alterarStatus(projetos);
+			else if (op == 9)
 				relatorio(projetos, Professores, alunosG, alunosM, alunosD, pesquisadores);
 		} while (op != 0);
 
