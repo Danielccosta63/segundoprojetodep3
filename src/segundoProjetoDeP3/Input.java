@@ -3,7 +3,7 @@ package segundoProjetoDeP3;
 import java.util.Scanner;
 
 public class Input {
-
+	static Scanner scan = new Scanner(System.in);
     private static Scanner scanner;
 
     public Input(){}
@@ -64,6 +64,7 @@ public class Input {
         while (!ready) {
             try {
                 valor = new Input().getInstance().nextLine();
+                
                 ready = true;
             } catch (Exception e) {
                 new Input().getInstance().next();
