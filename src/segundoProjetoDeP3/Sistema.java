@@ -375,7 +375,7 @@ public class Sistema {
 		System.out.println("Digite o Titulo");
 		novaOrientacao.titulo = scan.nextLine();;
 		System.out.println("Digite a Publicação");
-		novaOrientacao.orientacao = scan.nextLine();;
+		novaOrientacao.orientacao = scan.nextLine();
 
 		for (Projeto x : projetos) {
 			if (x.titulo.equals(projeto)) {
@@ -590,7 +590,7 @@ public class Sistema {
 					System.out.printf("\nAutor: %s", y.autor);
 					System.out.printf("\nData: %d/%d/%d", y.data[0], y.data[1], y.data[2]);
 					System.out.printf("\n%s", y.publicacao);
-					System.out.printf("----------------------------------------------");
+					System.out.printf("\n----------------------------------------------");
 				}
 			}
 		}
@@ -608,8 +608,8 @@ public class Sistema {
 					System.out.printf("\nTitulo: %s", y.titulo);
 					System.out.printf("\nAutor: %s", y.autor);
 					System.out.printf("\nData: %d/%d/%d", y.data[0], y.data[1], y.data[2]);
-					System.out.printf("\n%s", y.publicacao);
-					System.out.printf("----------------------------------------------");
+					System.out.printf("\n%s", y.orientacao);
+					System.out.printf("\n----------------------------------------------");
 				}
 			}
 		}
